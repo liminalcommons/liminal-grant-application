@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { supabase, WhitepaperSubmission } from '@/lib/supabase'
-import { FileText, User, Clock, RefreshCw } from 'lucide-react'
+import { FileText, User, Clock, RefreshCw, ArrowRight } from 'lucide-react'
 
 export default function ShowcaseGallery() {
   const [submissions, setSubmissions] = useState<WhitepaperSubmission[]>([])
@@ -133,7 +134,7 @@ export default function ShowcaseGallery() {
 
       <div className="grid-3">
         {submissions.map((submission) => (
-          <article key={submission.id} className="showcase-card">
+          <article key={submission.id} className="showcase-card" style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -159,9 +160,26 @@ export default function ShowcaseGallery() {
               fontSize: '0.9rem',
               lineHeight: 1.6,
               marginBottom: '1rem',
+              flex: 1,
             }}>
               {truncateContent(submission.whitepaper_content)}
             </p>
+
+            <Link
+              href={`/proposal/${submission.id}`}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                color: 'var(--color-gold)',
+                fontSize: '0.9rem',
+                marginBottom: '1rem',
+                transition: 'gap 0.2s ease',
+              }}
+            >
+              Read Full Proposal
+              <ArrowRight size={16} />
+            </Link>
 
             <div style={{
               display: 'flex',
