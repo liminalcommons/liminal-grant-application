@@ -40,11 +40,11 @@ export default function EditForm({ proposalId, userId }: EditFormProps) {
   useEffect(() => {
     const fetchProposal = async () => {
       try {
+        // Admin mode - fetch by id only
         const { data, error } = await supabase
           .from('whitepaper_submissions')
           .select('*')
           .eq('id', proposalId)
-          .eq('user_id', userId)
           .single()
 
         if (error || !data) {
@@ -84,6 +84,7 @@ export default function EditForm({ proposalId, userId }: EditFormProps) {
     setErrorMessage('')
 
     try {
+      // Admin mode - update by id only
       const { error } = await supabase
         .from('whitepaper_submissions')
         .update({
@@ -91,7 +92,6 @@ export default function EditForm({ proposalId, userId }: EditFormProps) {
           whitepaper_content: whitepaper.trim(),
         })
         .eq('id', proposalId)
-        .eq('user_id', userId)
         .eq('status', 'submitted')
 
       if (error) throw error
