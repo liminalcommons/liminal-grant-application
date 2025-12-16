@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { supabase, WhitepaperSubmission } from '@/lib/supabase'
-import { User, Clock, FileText, RefreshCw, AlertCircle } from 'lucide-react'
+import { User, Clock, FileText, RefreshCw, AlertCircle, ChevronDown, ChevronUp } from 'lucide-react'
 
 interface ProposalViewProps {
   proposalId: string
@@ -12,6 +12,55 @@ export default function ProposalView({ proposalId }: ProposalViewProps) {
   const [proposal, setProposal] = useState<WhitepaperSubmission | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [isExpanded, setIsExpanded] = useState(false)
+
+  // Extract abstract/summary from content
+  const extractAbstract = (content: string): { abstract: string; rest: string } => {
+    const lines = content.split('\n')
+    let abstractLines: string[] = []
+    let restLines: string[] = []
+    let foundAbstract = false
+    let inAbstract = false
+    let abstractEndIndex = 0
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].toLowerCase()
+
+      // Check if this line starts an abstract section
+      if (line.includes('abstract') || line.includes('summary') || line.includes('vision')) {
+        foundAbstract = true
+        inAbstract = true
+        abstractLines.push(lines[i])
+        continue
+      }
+
+      // If we're in the abstract, keep adding until we hit another section header
+      if (inAbstract) {
+        if (line.startsWith('#') || line.startsWith('## ') || line.startsWith('### ')) {
+          // New section - end of abstract
+          inAbstract = false
+          abstractEndIndex = i
+          break
+        }
+        abstractLines.push(lines[i])
+      }
+    }
+
+    // If no explicit abstract found, take first 500 chars as summary
+    if (!foundAbstract || abstractLines.length === 0) {
+      const firstChunk = content.substring(0, 800)
+      const lastPeriod = firstChunk.lastIndexOf('.')
+      return {
+        abstract: lastPeriod > 200 ? content.substring(0, lastPeriod + 1) : firstChunk,
+        rest: lastPeriod > 200 ? content.substring(lastPeriod + 1) : content.substring(800)
+      }
+    }
+
+    return {
+      abstract: abstractLines.join('\n'),
+      rest: lines.slice(abstractEndIndex).join('\n')
+    }
+  }
 
   useEffect(() => {
     const fetchProposal = async () => {
@@ -166,16 +215,96 @@ export default function ProposalView({ proposalId }: ProposalViewProps) {
         </div>
       </div>
 
-      {/* Content */}
-      <div className="glass-card">
+      {/* Abstract/Summary */}
+      <div className="glass-card" style={{ marginBottom: isExpanded ? '1rem' : '0' }}>
+        <h2 style={{
+          fontSize: '1.3rem',
+          marginBottom: '1rem',
+          color: 'var(--color-gold)',
+          fontFamily: 'var(--font-heading)',
+        }}>
+          Abstract / Summary
+        </h2>
         <div style={{
           maxWidth: '100%',
           overflowWrap: 'break-word',
           wordWrap: 'break-word',
         }}>
-          {formatContent(proposal.whitepaper_content)}
+          {formatContent(extractAbstract(proposal.whitepaper_content).abstract)}
         </div>
+
+        {/* Expand/Collapse Button */}
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          style={{
+            marginTop: '1.5rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.75rem 1.5rem',
+            background: 'rgba(201, 162, 39, 0.15)',
+            border: '1px solid var(--color-gold)',
+            borderRadius: '8px',
+            color: 'var(--color-gold)',
+            cursor: 'pointer',
+            fontSize: '0.95rem',
+            fontFamily: 'var(--font-heading)',
+            transition: 'all 0.3s ease',
+            width: '100%',
+            justifyContent: 'center',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'rgba(201, 162, 39, 0.25)'
+            e.currentTarget.style.transform = 'translateY(-2px)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'rgba(201, 162, 39, 0.15)'
+            e.currentTarget.style.transform = 'translateY(0)'
+          }}
+        >
+          {isExpanded ? (
+            <>
+              <ChevronUp size={20} />
+              Hide Full Proposal
+            </>
+          ) : (
+            <>
+              <ChevronDown size={20} />
+              Read Full Proposal
+            </>
+          )}
+        </button>
       </div>
+
+      {/* Full Content (Collapsible) */}
+      {isExpanded && (
+        <div className="glass-card" style={{
+          animation: 'fadeIn 0.3s ease',
+        }}>
+          <h2 style={{
+            fontSize: '1.3rem',
+            marginBottom: '1rem',
+            color: 'var(--color-gold)',
+            fontFamily: 'var(--font-heading)',
+          }}>
+            Full Proposal
+          </h2>
+          <div style={{
+            maxWidth: '100%',
+            overflowWrap: 'break-word',
+            wordWrap: 'break-word',
+          }}>
+            {formatContent(extractAbstract(proposal.whitepaper_content).rest)}
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </div>
   )
 }
