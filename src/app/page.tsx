@@ -58,8 +58,8 @@ export default function Home() {
           <div className="glass-card knotwork-border" style={{ maxWidth: '800px', margin: '0 auto', padding: '2.5rem' }}>
             <p style={{ fontSize: '1.2rem', marginBottom: '1.5rem' }}>
               There is a <strong style={{ color: 'var(--color-gold)' }}>massive flow of capital</strong> entering
-              the decentralized AI field right now. The SingularityNET "Deep Funding" rounds are distributing
-              <strong style={{ color: 'var(--color-gold)' }}> millions in grants</strong> to build the future of Beneficial AGI.
+              the AI and deep tech field right now. Venture funds and grant programs are distributing
+              <strong style={{ color: 'var(--color-gold)' }}> millions in grants</strong> to build the future of transformative technology.
             </p>
 
             <h3 style={{ marginBottom: '1rem' }}>Here is the truth:</h3>
@@ -173,7 +173,7 @@ export default function Home() {
           <div className="section-divider" style={{ maxWidth: '200px', margin: '0 auto 1rem' }} />
           <p style={{ textAlign: 'center', marginBottom: '2rem', color: 'var(--color-text-secondary)', fontSize: '1.15rem' }}>
             Copy this prompt and paste it into <strong style={{ color: 'var(--color-gold)' }}>ChatGPT</strong> or <strong style={{ color: 'var(--color-gold)' }}>Claude</strong>.<br />
-            The AI will guide you through writing your Deep Funding whitepaper.
+            The AI will guide you through writing your grant proposal.
           </p>
 
           <div style={{ maxWidth: '900px', margin: '0 auto' }}>
