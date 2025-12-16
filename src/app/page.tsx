@@ -31,7 +31,7 @@ export default function Home() {
             margin: '0 auto 2rem',
             color: 'var(--color-text-secondary)',
           }}>
-            We secured <span style={{ color: 'var(--color-gold)', fontWeight: 600 }}>$50k</span> for Acropolis OS.
+            We secured <span style={{ color: 'var(--color-gold)', fontWeight: 600 }}>$50k</span> in grants.
             Now, we are doing the same for you—at scale.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
