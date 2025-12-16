@@ -20,10 +20,10 @@ export default function MyProposalsList({ userId }: MyProposalsListProps) {
     setError(null)
 
     try {
+      // Show all proposals (admin view) - no user_id filter
       const { data, error } = await supabase
         .from('whitepaper_submissions')
         .select('*')
-        .eq('user_id', userId)
         .order('created_at', { ascending: false })
 
       if (error) throw error
@@ -43,11 +43,11 @@ export default function MyProposalsList({ userId }: MyProposalsListProps) {
 
     setDeletingId(id)
     try {
+      // Admin mode - delete by id only
       const { error } = await supabase
         .from('whitepaper_submissions')
         .delete()
         .eq('id', id)
-        .eq('user_id', userId)
 
       if (error) throw error
       setSubmissions(submissions.filter(s => s.id !== id))
