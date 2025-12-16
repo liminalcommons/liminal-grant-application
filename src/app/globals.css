@@ -242,6 +242,39 @@ a:hover {
   box-shadow: 0 0 15px rgba(201, 162, 39, 0.3);
 }
 
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+/* Navigation Links */
+.nav-link {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--color-gold);
+}
+
+.nav-link-mobile {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--glass-border);
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.nav-link-mobile:hover {
+  color: var(--color-gold);
+}
+
 /* Form Elements */
 input, textarea, select {
   width: 100%;
