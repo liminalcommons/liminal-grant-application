@@ -3,12 +3,17 @@ import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Liminal Grant Application | Get Funded for Your AI Project',
+  title: 'Liminal Grant Factory | Get Funded for Your AI Project',
   description: 'We secured $50k for Acropolis OS. Now, we are doing the same for you—at scale. Join the Liminal Commonwealth Protocol and turn your AI ideas into funded projects.',
   keywords: ['AI grants', 'Deep Funding', 'SingularityNET', 'Liminal Commons', 'AGI', 'decentralized AI'],
   authors: [{ name: 'Liminal Commons' }],
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
-    title: 'Liminal Grant Application | Let Us Help You Get Funded',
+    title: 'Liminal Grant Factory | Let Us Help You Get Funded',
     description: 'Turn your AI ideas into funded Deep Funding proposals with our Grant Factory.',
     type: 'website',
   },
