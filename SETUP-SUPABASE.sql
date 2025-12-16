@@ -34,6 +34,7 @@ DROP POLICY IF EXISTS "Users can update pending" ON whitepaper_submissions;
 CREATE POLICY "Public read access" ON whitepaper_submissions FOR SELECT USING (true);
 CREATE POLICY "Users can insert" ON whitepaper_submissions FOR INSERT WITH CHECK (true);
 CREATE POLICY "Users can update pending" ON whitepaper_submissions FOR UPDATE USING (status = 'submitted');
+CREATE POLICY "Users can delete own" ON whitepaper_submissions FOR DELETE USING (true);
 
 -- Updated_at trigger (drop first if exists)
 DROP TRIGGER IF EXISTS update_whitepaper_submissions_updated_at ON whitepaper_submissions;

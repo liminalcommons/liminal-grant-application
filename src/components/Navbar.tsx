@@ -58,6 +58,13 @@ export default function Navbar() {
           <>
             {isSignedIn ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <Link href="/my-proposals" style={{
+                  color: 'var(--color-text-secondary)',
+                  fontSize: '0.9rem',
+                  transition: 'color 0.3s ease',
+                }}>
+                  My Proposals
+                </Link>
                 <Link href="/submit" className="btn btn-primary" style={{
                   padding: '0.5rem 1rem',
                   fontSize: '0.9rem',

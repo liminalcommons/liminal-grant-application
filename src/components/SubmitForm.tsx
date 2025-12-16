@@ -34,7 +34,6 @@ export default function SubmitForm() {
   }
 
   const sectionCheck = checkSections()
-  const allSectionsPresent = sectionCheck.every(s => s.found)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -47,12 +46,6 @@ export default function SubmitForm() {
 
     if (!form.title.trim() || !form.whitepaper.trim()) {
       setErrorMessage('Please fill in all fields')
-      setSubmitStatus('error')
-      return
-    }
-
-    if (!allSectionsPresent) {
-      setErrorMessage('Your whitepaper is missing some required sections. Please review the checklist below.')
       setSubmitStatus('error')
       return
     }
@@ -172,7 +165,7 @@ export default function SubmitForm() {
           marginBottom: '0.75rem',
           fontSize: '0.9rem',
         }}>
-          Section Checklist:
+          Section Checklist <span style={{ fontWeight: 400, color: 'var(--color-text-muted)' }}>(recommended)</span>:
         </p>
         <div style={{
           display: 'grid',
