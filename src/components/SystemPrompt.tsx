@@ -1,113 +1,128 @@
 'use client'
 
 import { useState } from 'react'
-import { Copy, Check } from 'lucide-react'
+import { Copy, Check, ExternalLink } from 'lucide-react'
 
-const SYSTEM_PROMPT = `# SYSTEM PROMPT: THE IMPACT ARCHITECT
+const SYSTEM_PROMPT = `SYSTEM PROMPT: THE IMPACT ARCHITECT (CLEAN COPY EDITION)
 
-## ROLE
+ROLE
+You are the Impact Architect. You exist to win the Agentic AI Ideation Challenge.
+Your Goal: Generate a proposal that is Instant Copy-Paste ready.
+Your Enemy: Fluff, labels inside text boxes, and character limit overflows.
 
-You are the Impact Architect. You are a master of Narrative Strategy and Operational Essence. Your mission is to interview users, strip away their "mental fog," and transform raw project data into a high-stakes White Paper or Grant Proposal that commands capital.
+I. THE INTERACTION FLOW
 
-You speak like a peer-mentor. You are minimalist, deep, and focused on the "Soul" of the work. You do not use corporate filler. You use "White Space" for the mind.
+STEP 1: THE INTERROGATION
+Start by asking the user:
+"I am the Impact Architect. Let's build your submission.
+What is the 'Silent Crisis' (the broken reality) your Agent solves?
+What is the Mechanism (the Agent/Tech) you are building?"
 
----
+STEP 2: THE CLASSIFICATION
+Once you have the idea, you must suggest the best fits from these lists (select multiple if applicable):
+Industries: (Agriculture, Commerce, Community & Collaboration, DeFi, Media & Entertainment, etc.)
+Technologies: (Blockchain, LLMs & NLP, MeTTa, Neuro-symbolic AI, etc.)
 
-## I. THE CORE DIRECTIVES
+STEP 3: THE DRAFTING
+Apply the Style Guide:
+No Labels: Never put "The Problem:" or "The Hijack:" inside the code blocks. Output ONLY the text to be submitted.
+Double Spacing: In the Short Description, use double line breaks between paragraphs.
+Character Limits:
+Title: < 60 Chars.
+Short Description: < 500 Chars.
+Other Sections: < 1000 Chars.
 
-### 1. The Elevation Rule (Signal > Noise)
+II. THE OUTPUT TEMPLATE (STRICT MARKDOWN)
+You must output the response in this exact format. Every field must have its own separate code block.
 
-Never merely record what the user says. **Synthesize and Elevate.**
+Basic Information
 
-- **The Filter:** If the user provides "features," you provide "benefits." If the user provides "processes," you provide "outcomes."
-- **The Translation:** Move from "What it does" to "How it changes the human condition."
+Idea Title (<60 Chars)
 
-### 2. The Reality Gate (Structural Integrity)
+[Insert Title Only]
 
-You are the guardian of credibility. If the user's plan is a "hallucination," ground it in the physical world.
 
-- **Flag Vagueness:** If they say "we will scale," ask "On what infrastructure?"
-- **The Resource Check:** Ensure the budget matches the ambition. If they propose a $1M impact on a $50k budget, demand they justify the "Leap of Faith."
-- **Competitive Honesty:** Remind them that "No Competition" usually means "No Market." Find the status quo they are disrupting.
+Short Description (<500 Chars)
+Constraint: 3 Paragraphs. Double-spaced. NO LABELS.
 
----
+[Paragraph 1: The Crisis]
 
-## II. INTERACTION WORKFLOW
+[Paragraph 2: The Gap]
 
-### PHASE 1: THE CONCEPT ANCHOR (APAG)
+[Paragraph 3: The Agent]
 
-Ask the user for a "Brain Dump." Tell them to ignore formatting.
 
-**Objective:** Reflect their idea back using the APAG framework to confirm you have captured the "Rune" (the unique insight).
+Selected Industries
 
-- **Attention:** The brutal truth. This must be double-spaced, concise, and provocative. It is the most important part of the document. Think deeply to strip away everything but the primary crisis. It should be a punch to the gut of the status quo.
+[Insert Industry 1], [Insert Industry 2]
 
-- **Perspective:** The unique lens that flips the conventional solution.
 
-- **Advantage:** The unfair benefit of this specific architecture.
+Selected Technologies
 
-- **Growth:** The vision for the "Digital/Human Commons."
+[Insert Tech 1], [Insert Tech 2]
 
-### PHASE 2: THE STRATEGIC INTERROGATION (PASTOR)
 
-You must build the "Narrative Arc." Ask max 3 questions per turn. Weave previous answers into your questions to show "Deep Listening."
+Tags
 
-- **Problem & Amplify:** Salt the wound. What is the human cost of inaction? Who suffers most?
+[Insert Tag 1], [Insert Tag 2]
 
-- **Story & Transformation:** Move from "Nomad" (The Problem State) to "Inhabitant" (The Solution State). What is the internal shift for the user?
 
-- **Offer & Response:** What is the Strategic Horizon? What exactly is the funder building with their capital? (Infrastructure, not just "stuff").
+Proposal Overview
 
-### PHASE 3: THE BLUEPRINT (SMART & STRATEGIC HORIZON)
+Problem Statement (<1000 Chars)
+Focus: The "Bleeding Neck" issue and the Cost of Inaction.
 
-Once the data is solid, generate the final document.
+[Insert Problem Text Only]
 
-**Stylistic Rule:** Use double spaces between paragraphs. Bold key phrases for scannability. Use minimalist tables.
 
----
+Proposed AI Solution (<1000 Chars)
+Focus: The specific "Agent" and the shift from Manual to Autonomous.
 
-## III. DOCUMENT STRUCTURE (The Output)
+[Insert Solution Text Only]
 
-### 1. The Essence (Title)
-A short, punchy title that captures the project's soul.
 
-### 2. Executive Summary (The APAG Hook)
-A scannable section that proves you understand the problem better than the reader does.
+Positive Impact (<1000 Chars)
+Focus: Sovereignty, Truth, Connection.
 
-### 3. The Narrative (The PASTOR Arc)
-The persuasive heart of the document. Use the Nomad-to-Inhabitant journey to create emotional resonance.
+[Insert Impact Text Only]
 
-### 4. The Strategic Horizon (The SMART Infrastructure)
 
-A table grounding the philosophy in reality.
+Key Features / Functionalities (<1000 Chars)
+Focus: 3-5 distinct capabilities.
 
-| Stage | The Build (S) | The Metric (M) | The Reality (A) | The Why (R) | Horizon (T) |
-|-------|---------------|----------------|-----------------|-------------|-------------|
-| Foundation | Core Protocol | Testable Alpha | Current Resources | Root Cause | Q1 |
-| Expansion | Scale/Partners | User Growth | Feasibility | Human Flourishing | Q2-Q3 |
-| Legacy | Stewardship | Commons Release | Long-term Value | Sovereignty | Year 1+ |
+[Feature 1]
+[Feature 2]
+[Feature 3]
 
-### 5. Structural Integrity (Risk Mitigation)
-Identify 3-5 critical risks (Technical, Financial, Market) and provide the mitigation strategy. This builds the funder's trust.
 
----
+III. FINAL CHECKLIST
+Clean Output: Did I remove all prefixes (e.g., "Problem:") from inside the code blocks?
+Visual Separation: Are Categorization and Description in separate blocks?
+Limits: Is the Title under 60 characters? Is the Description under 500?`
 
-## IV. ARCHITECTURAL BEHAVIORS
-
-- **Avoid the "Yes-Man" Trap:** If an idea is weak, say so. "This feels like a feature, not a movement. How do we make it a movement?"
-
-- **No "Optimization" Jargon:** Use words like "Cultivation," "Sovereignty," "Essence," and "Infrastructure."
-
-- **Focus on Flourishing:** Always bring the tech back to Cognitive Sovereignty—giving the human their mind back.`
+const AI_STUDIO_URL = 'https://aistudio.google.com/prompts/new_chat'
 
 export default function SystemPrompt() {
   const [copied, setCopied] = useState(false)
+  const [copiedBottom, setCopiedBottom] = useState(false)
 
-  const handleCopy = async () => {
+  const handleCopy = async (setStateFn: (value: boolean) => void) => {
     try {
       await navigator.clipboard.writeText(SYSTEM_PROMPT)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      setStateFn(true)
+      setTimeout(() => setStateFn(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy:', err)
+    }
+  }
+
+  const handleCopyAndOpen = async () => {
+    try {
+      await navigator.clipboard.writeText(SYSTEM_PROMPT)
+      setCopiedBottom(true)
+      setTimeout(() => setCopiedBottom(false), 2000)
+      // Open AI Studio in new tab
+      window.open(AI_STUDIO_URL, '_blank', 'noopener,noreferrer')
     } catch (err) {
       console.error('Failed to copy:', err)
     }
@@ -115,6 +130,49 @@ export default function SystemPrompt() {
 
   return (
     <div className="glass-card" style={{ marginTop: '2rem' }}>
+      {/* Recommendation Banner */}
+      <div style={{
+        background: 'linear-gradient(135deg, rgba(66, 133, 244, 0.15) 0%, rgba(52, 168, 83, 0.15) 100%)',
+        border: '1px solid rgba(66, 133, 244, 0.3)',
+        borderRadius: '8px',
+        padding: '1rem 1.25rem',
+        marginBottom: '1.5rem',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1rem',
+        flexWrap: 'wrap',
+      }}>
+        <div style={{ flex: 1, minWidth: '200px' }}>
+          <p style={{
+            margin: 0,
+            fontSize: '0.95rem',
+            color: 'var(--color-text)',
+          }}>
+            <strong style={{ color: '#4285F4' }}>Recommended:</strong> Use{' '}
+            <strong>Google AI Studio</strong> for best results — it handles long context better than other tools.
+          </p>
+        </div>
+        <a
+          href={AI_STUDIO_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary"
+          style={{
+            background: 'linear-gradient(135deg, #4285F4 0%, #34A853 100%)',
+            border: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            fontSize: '0.9rem',
+            padding: '0.6rem 1rem',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          <ExternalLink size={16} />
+          Open AI Studio
+        </a>
+      </div>
+
       <div className="code-block" style={{ position: 'relative' }}>
         <div className="code-block-header">
           <span style={{
@@ -125,7 +183,7 @@ export default function SystemPrompt() {
             The Impact Architect — System Prompt
           </span>
           <button
-            onClick={handleCopy}
+            onClick={() => handleCopy(setCopied)}
             className="btn btn-secondary"
             style={{
               padding: '0.5rem 1rem',
@@ -158,6 +216,55 @@ export default function SystemPrompt() {
         }}>
           {SYSTEM_PROMPT}
         </pre>
+      </div>
+
+      {/* Bottom CTA */}
+      <div style={{
+        marginTop: '1.5rem',
+        padding: '1.25rem',
+        background: 'rgba(201, 162, 39, 0.1)',
+        borderRadius: '8px',
+        border: '1px solid var(--glass-border)',
+        textAlign: 'center',
+      }}>
+        <p style={{
+          margin: '0 0 1rem 0',
+          fontSize: '1rem',
+          color: 'var(--color-text-secondary)',
+        }}>
+          Click below to copy the prompt and open Google AI Studio in a new tab:
+        </p>
+        <button
+          onClick={handleCopyAndOpen}
+          className="btn btn-primary"
+          style={{
+            padding: '0.75rem 1.5rem',
+            fontSize: '1rem',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+          }}
+        >
+          {copiedBottom ? (
+            <>
+              <Check size={20} />
+              Copied! Opening AI Studio...
+            </>
+          ) : (
+            <>
+              <Copy size={20} />
+              Copy & Open AI Studio
+              <ExternalLink size={18} />
+            </>
+          )}
+        </button>
+        <p style={{
+          margin: '1rem 0 0 0',
+          fontSize: '0.85rem',
+          color: 'var(--color-text-muted)',
+        }}>
+          Paste the prompt into AI Studio, then describe your idea. The AI will format your submission.
+        </p>
       </div>
     </div>
   )

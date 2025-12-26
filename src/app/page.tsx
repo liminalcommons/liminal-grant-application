@@ -172,7 +172,7 @@ export default function Home() {
           </h2>
           <div className="section-divider" style={{ maxWidth: '200px', margin: '0 auto 1rem' }} />
           <p style={{ textAlign: 'center', marginBottom: '2rem', color: 'var(--color-text-secondary)', fontSize: '1.15rem' }}>
-            Copy this prompt and paste it into <strong style={{ color: 'var(--color-gold)' }}>ChatGPT</strong> or <strong style={{ color: 'var(--color-gold)' }}>Claude</strong>.<br />
+            Copy this prompt and paste it into <strong style={{ color: 'var(--color-gold)' }}>Google AI Studio</strong> (recommended for context length).<br />
             The AI will guide you through writing your grant proposal.
           </p>
 
